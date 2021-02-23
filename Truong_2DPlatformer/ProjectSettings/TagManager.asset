@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Platforms
+  - ItemDropTarget
+  - PlatformsWithWalls
+  - 16tons
+  - Player
+  - PickupRange
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Sky
+    uniqueID: 3107226293
+    locked: 0
+  - name: Background
+    uniqueID: 3339334681
+    locked: 0
+  - name: BackgroundDecals
+    uniqueID: 3844159819
+    locked: 0
+  - name: Middle
+    uniqueID: 1203244143
+    locked: 0
+  - name: CaveOutlineFade
+    uniqueID: 1155143317
+    locked: 0
+  - name: CaveEntrances
+    uniqueID: 4272742259
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2389031185
+    locked: 0
+  - name: ForegroundDecals
+    uniqueID: 1000807717
+    locked: 0
+  - name: UI
+    uniqueID: 2468364777
+    locked: 0

@@ -13,17 +13,17 @@ TagManager:
   - UI
   - 
   - 
-  - Platforms
+  - PlatformsGrass
   - ItemDropTarget
-  - PlatformsWithWalls
+  - PlatformsWithWallsGrass
   - 16tons
   - Player
   - PickupRange
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Walls
+  - Obstacle
+  - PlatformSand
+  - PlatformDirt
+  - PlatformWater
   - 
   - 
   - 

@@ -40,6 +40,7 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
     /// </summary>
     ItemSlot[] itemSlots;
     bool isDragged;
+    bool isDragCanceled;
 
     public string Uid => uid;
     public string SlotUid { get; private set; }
@@ -69,17 +70,19 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
                 ResetPositionInSlot();
             else
                 RestoreInitialValues();
+            isDragCanceled = true;
         }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        isDragCanceled = false;
         if (!alreadyUsed)
         {
             //allow dragging from item slot or from level if in pickup range
             bool isInRange = false;
             if (isAttachedToItemSlot
-                || (isInRange = IsInPickupRange(eventData)))
+                || (isInRange = IsInPickupRange()))
             {
                 //allow to detect drop (fe. on item slots), this wont catch UIraycasts when dragging
                 canvasGroup.blocksRaycasts = false;
@@ -138,7 +141,7 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
     /// </summary>
     /// <param name="eventData"></param>
     /// <returns></returns>
-    bool IsInPickupRange(PointerEventData eventData)
+    bool IsInPickupRange()
     {
         Collider2D[] results = new Collider2D[1];
         pickupRangeCollider.OverlapCollider(new ContactFilter2D { layerMask = whoCanPickup, useLayerMask = true }, results);
@@ -242,6 +245,12 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
 
     public void AttachToItemSlot(ItemSlot slot)
     {
+        if (isDragCanceled)
+        {
+            //cant place in slot when drag canceled (player moved while dragging)
+            return;
+        }
+
         //check if moving between slots
         if (isAttachedToItemSlot)
         {

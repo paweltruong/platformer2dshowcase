@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameState : MonoBehaviour
 {
+    [SerializeField] IntroScenario intro;
     IGameProgress gameProgress;
     int currentGameSlot = 0;
     Savable[] savables;
@@ -25,7 +26,15 @@ public class GameState : MonoBehaviour
     void Start()
     {
         savables = FindObjectsOfType<Savable>(true);
-        gameProgress.LoadOrStartNew(savables);
+        if (gameProgress.LoadOrStartNew(savables))
+        {
+            Debug.Log("GS Intro Play");
+            intro.Play();
+        }
+        else
+        {
+            intro.Skip();
+        }
     }
 
     /// <summary>

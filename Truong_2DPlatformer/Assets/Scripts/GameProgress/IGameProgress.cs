@@ -8,10 +8,11 @@ public interface IGameProgress
 {
     GameProgressData Current { get; }
     /// <summary>
-    /// load if save exits else start new game
+    /// load if save exits else start new game, returns information is it a new game
     /// </summary>
     /// <param name="savables"></param>
-    void LoadOrStartNew(IEnumerable<Savable> savables);
+    /// <returns>true if its a new game</returns>
+    bool LoadOrStartNew(IEnumerable<Savable> savables);
     /// <summary>
     /// reset save slot (overwrite old save)
     /// </summary>

@@ -63,9 +63,9 @@ public class Savable : MonoBehaviour
     }
     void LoadPlayerData(IGameProgress gameProgress)
     {
-        var characterMove = GetComponent<CharacterMove>();
+        var characterMove = GetComponent<Character>();
         if (characterMove == null)
-            Debug.LogError($"{name} does not have {nameof(CharacterMove)} component, check {nameof(Savable)}.{nameof(gameObjectType)}");
+            Debug.LogError($"{name} does not have {nameof(Character)} component, check {nameof(Savable)}.{nameof(gameObjectType)}");
 
         transform.position = gameProgress.Current.playerPosition.ToVector3();
         characterMove.SetDirection(gameProgress.Current.playerScaleX);

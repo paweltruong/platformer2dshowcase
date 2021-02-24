@@ -35,7 +35,7 @@ public class FileGameProgressStorageService : IGameProgressStorageService
         var path = GetSaveFilePath(slotIndex);
 
         File.WriteAllText(path, GetSignedData(data), Encoding.UTF8);
-        Debug.Log($"Data saved to '{path}'");
+        //Debug.Log($"Data saved to '{path}'");
     }
 
     public GameProgressData Load(int slotIndex)
@@ -95,7 +95,7 @@ public class FileGameProgressStorageService : IGameProgressStorageService
         //validate
         if (signature != parts[1])
             Debug.LogError($"Save file '{path}' corrupted (signature invalid)");
-        Debug.Log($"Loading:\r\n{decodedContent}");
+        //Debug.Log($"Loading:\r\n{decodedContent}");
         return JsonUtility.FromJson<GameProgressData>(decodedContent);
     }
 

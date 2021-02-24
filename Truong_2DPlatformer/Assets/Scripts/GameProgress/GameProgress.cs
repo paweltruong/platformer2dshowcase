@@ -28,15 +28,16 @@ public class GameProgress : IGameProgress
     }
 
 
-    public void LoadOrStartNew(IEnumerable<Savable> savables)
+    public bool LoadOrStartNew(IEnumerable<Savable> savables)
     {
+        bool newGame = false;
         if (gameProgressStorage.IsSlotExists(currentGameSlotIndex))
         {
             current = gameProgressStorage.Load(currentGameSlotIndex);
             if (!current.isFreshSave)
                 LoadToScene(savables);
             else
-
+                newGame = true;
             //if save corrupted(empty progress, reset progress)
             if (current == null)
                 Reset();
@@ -47,6 +48,7 @@ public class GameProgress : IGameProgress
         {
             ResetAndSave();
         }
+        return newGame;
     }
     /// <summary>
     /// reset save slot (overwrite old save)
@@ -66,7 +68,7 @@ public class GameProgress : IGameProgress
 
     void Save(bool isFreshSsave, IEnumerable<Savable> savables = null)
     {
-        Debug.Log("Saving...");
+        //Debug.Log("Saving...");
         if (isFreshSsave)
         {
             current.isFreshSave = true;
@@ -80,7 +82,7 @@ public class GameProgress : IGameProgress
             }
         }
         gameProgressStorage.Save(currentGameSlotIndex, Current);
-        Debug.Log("Game was successfuly saved");
+        //Debug.Log("Game was successfuly saved");
     }
 
     void LoadToScene(IEnumerable<Savable> savables)
